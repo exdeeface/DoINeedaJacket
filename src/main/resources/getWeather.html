@@ -17,7 +17,7 @@
     {% for daily in dailyForecast.timelines.daily %}
         <div class="day">
             <h2>{{daily.time}}</h2>
-           <p class="temperature"> <b>{{daily.values.temperatureAvg}}°C</b></p>
+           <p class="temperature"> <b>{{daily.values.getTemperatureAvg()}}°C</b></p>
             <p class="conditions">{{daily.getSummary()}}</p>
         </div>
     {% endfor %}

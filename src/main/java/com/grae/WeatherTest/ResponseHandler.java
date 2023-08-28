@@ -25,7 +25,7 @@ public class ResponseHandler {
 
         context.put("dailyForecast", dailyForecast);
         context.put("today", dailyForecast.timelines.daily.get(0));
-        context.put("feelslikenow", dailyForecast.timelines.daily.get(0).values.getTemperatureApparentAvg());
+        context.put("feelslikenow", dailyForecast.timelines.daily.get(0).values.getTemperatureApparentAvgAsString());
 
         String template = Resources.toString(Resources.getResource("getWeather.html"), Charsets.UTF_8);
         return jnj.render(template, context);
