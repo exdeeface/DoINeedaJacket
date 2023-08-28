@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>The Weather Today</title>
+</head>
+<body>
+    <div class="topnav">
+        <label>
+            <input type="text" placeholder="Place to inspect">
+        </label>
+    </div>
+<h1>{{hourlyForecast.location.name}}</h1>
+    <h2>lat: {{hourlyForecast.location.lat}}, lon: {{hourlyForecast.location.lon}}</h2>
+    {% for hourly in hourlyForecast.timelines.hourly %}
+        <h3>  at {{hourly.time}}</h3>
+        {% if hourly.values.temperature == hourly.values.temperatureApparent %}
+            <p>    temperature: {{hourly.values.temperature}}°C</p>
+        {% elif %}
+            <p>    temperature: {{hourly.values.temperature}}°C</p>
+            <p>    feelslike: {{hourly.values.temperatureApparent}}°C</p>
+        {% endif %}
+        <p>cloud coverage: {{hourly.values.cloudCover}}%</p>
+        <p>wind speed: {{hourly.values.windSpeed}} mph</p>
+        <p>humidity: {{hourly.values.humidity}} %</p>
+    {% endfor %}
+</body>
+</html>

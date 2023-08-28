@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="resultStyles.css">
+    <title>Weather Forecast</title>
+</head>
+<body>
+<h1 class="feels-like-title">{{feelslikenow}}°C</h1>
+<h1 class="dinaj">{{dailyForecast.verdict}}</h1>
+<h2>{{dailyForecast.justification}}</h2>
+<h1 class="location-title">{{dailyForecast.location.name}}</h1>
+<div class="forecast-container">
+    {% for daily in dailyForecast.timelines.daily %}
+        <div class="day">
+            <h2>{{daily.time}}</h2>
+            <p class="temperature">{{daily.values.temperatureAvg}}°C</p>
+            <p class="conditions">{{daily.getVerdict()}}</p>
+        </div>
+    {% endfor %}
+</div>
+</body>
+</html>
