@@ -14,35 +14,15 @@ public class Values {
     private double humidity;
     private double temperature;
     private double temperatureApparent;
-
-    public double getCloudCoverAvg() {
-        return cloudCoverAvg;
-    }
-
-    public int getPrecipitationProbability() {
-        return precipitationProbability;
-    }
-
     private double cloudCoverAvg;
     private double humidityAvg;
     public double precipitationProbabilityAvg;
-
-    public int getPrecipitationProbabilityMax() {
-        return precipitationProbabilityMax;
-    }
-
     private int precipitationProbabilityMax;
     private int snowIntensityAvg;
     private double temperatureApparentAvg;
     private double temperatureAvg;
     private double windSpeed;
-
-    public double getWindSpeedAvg() {
-        return windSpeedAvg;
-    }
-
     private double windSpeedAvg;
-
     private int precipitationProbability;
     private double rainAccumulation;
     private double rainIntensity;
@@ -69,7 +49,9 @@ public class Values {
     private double windSpeedMax;
     private double windSpeedMin;
 
-
+    public double getCloudCoverAvg() { return cloudCoverAvg; }
+    public int getPrecipitationProbabilityMax() { return precipitationProbabilityMax; }
+    public double getWindSpeedAvg() { return windSpeedAvg; }
     public double getTemperatureAvg() {
         return temperatureAvg;
     }

@@ -5,8 +5,8 @@ import java.util.ArrayList;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Timelines {
-    public ArrayList<Hourly> hourly;
-    public ArrayList<Daily> daily;
+    private ArrayList<Hourly> hourly;
+    private ArrayList<Daily> daily;
 
     public ArrayList<Hourly> getHourly() {
         return hourly;

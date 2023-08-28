@@ -1,8 +1,8 @@
 package com.grae.WeatherTest;
 
 public class DailyForecast {
-    public Timelines timelines;
-    public Location location;
+    private Timelines timelines;
+    private Location location;
 
     public Timelines getTimelines() {
         return timelines;

@@ -3,8 +3,8 @@ package com.grae.WeatherTest;
 import java.util.Date;
 
 public class Hourly{
-    public Date time;
-    public Values values;
+    private Date time;
+    private Values values;
 
     public Values getValues() {
         return values;

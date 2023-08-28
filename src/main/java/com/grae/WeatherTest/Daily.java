@@ -4,15 +4,15 @@ import java.util.Calendar;
 import java.util.Date;
 
 public class Daily {
-    public Date time;
-    public Values values;
-    public String summary;
-    public String justification = "test change me too please :-)";
-    public String dinaj;
+    private Date time;
+    private Values values;
+    private String summary;
+    private String justification = "test change me too please :-)";
+    private String dinaj;
 
-    public int coldScore;
-    public int rainScore;
-    public int windScore;
+    private int coldScore;
+    private int rainScore;
+    private int windScore;
 
     public Values getValues() {
         return this.values;
@@ -86,8 +86,7 @@ public class Daily {
         } else if (values.getCloudCoverAvg() < 30.0d && values.getTemperatureApparentAvg() >= 15.0d) { this.summary = "Sunny";
         } else {
             this.summary = "Clear";
-            System.out.println("temp: " + values.getTemperatureAvg() + ", cloud: " +
-                    values.getCloudCoverAvg() + ", rain: " + values.getPrecipitationProbabilityMax() + ", wind: " + values.getWindSpeedAvg());
+            System.out.println("temp: " + values.getTemperatureAvg() + ", cloud: " + values.getCloudCoverAvg() + ", rain: " + values.getPrecipitationProbabilityMax() + ", wind: " + values.getWindSpeedAvg());
         }
     }
 
