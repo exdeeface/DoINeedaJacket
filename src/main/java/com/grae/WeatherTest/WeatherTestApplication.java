@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.io.File;
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.Map;
 
 
@@ -22,14 +23,14 @@ import java.util.Map;
 @RestController
 public class WeatherTestApplication {
 	@GetMapping("/getHourlyWeather")
-	public static String requestHourlyForecast(String location) throws IOException {
+	public static HourlyForecast requestHourlyForecast(String location) throws IOException {
 		OkHttpClient client = new OkHttpClient();
 
 		String timestep = "1h";
 		String unit = "metric";
 
 		Request request = new Request.Builder()
-				.url("https://tomorrow-io1.p.rapidapi.com/v4/weather/forecast?location=" + location + "&timesteps=1d&units=metric")
+				.url("https://tomorrow-io1.p.rapidapi.com/v4/weather/forecast?location=" + location + " &timesteps=" + timestep + "&units=" + unit)
 				.get()
 				.addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
 				.addHeader("X-RapidAPI-Host", "tomorrow-io1.p.rapidapi.com")
@@ -40,9 +41,7 @@ public class WeatherTestApplication {
 		ObjectMapper objectMapper = new ObjectMapper();
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
-		HourlyForecast hourlyForecast = objectMapper.readValue(response.body().string(), HourlyForecast.class);
-		ResponseHandler responseHandler = new ResponseHandler();
-		return responseHandler.createTemplate(hourlyForecast);
+		return objectMapper.readValue(response.body().string(), HourlyForecast.class);
 	}
 
 	@GetMapping("/getDailyWeather")
@@ -65,11 +64,15 @@ public class WeatherTestApplication {
 		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 
 		DailyForecast dailyForecast = objectMapper.readValue(response.body().string(), DailyForecast.class);
-		ResponseHandler responseHandler = new ResponseHandler();
+        handleForecast(dailyForecast);
+
+		HourlyForecast hourlyForecast = requestHourlyForecast(location);
+
+        ResponseHandler responseHandler = new ResponseHandler();
 		return responseHandler.createTemplate(dailyForecast);
 	}
 
-	@GetMapping("/searchLocation")
+	@GetMapping({"/", "/search"})
 	public static String searchForm() throws IOException {
 		Map<String, Object> context = Maps.newHashMap();
 		String template = Resources.toString(Resources.getResource("searchLocation.html"), Charsets.UTF_8);
@@ -77,27 +80,28 @@ public class WeatherTestApplication {
 		return jnj.render(template, context);
 	}
 
-	@PostMapping("/searchLocation")
+	@PostMapping({"/", "/search"})
 	public static String searchSubmit(@RequestParam("location") String location) throws IOException {
 		return requestDailyForecast(location);
 	}
 
+	@GetMapping("getFakeDailyWeather")
 	public static String requestFakeDailyForecast() throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
-		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
 		ResponseHandler responseHandler = new ResponseHandler();
+
+		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
+		handleForecast(dailyForecast);
+
 		return responseHandler.createTemplate(dailyForecast);
+	}
+
+	public static void handleForecast(DailyForecast dailyForecast) {
+		if (dailyForecast.timelines.daily.size() > 5) { dailyForecast.timelines.daily.remove(dailyForecast.timelines.daily.size()-1); }
+		//for (Daily d : dailyForecast.timelines.daily) {d.summariseData(); }
 	}
 
 	public static void main(String[] args) {
 		SpringApplication.run(WeatherTestApplication.class, args);
 	}
 }
-
-//TODO:
-	//add a static folder and a css file
-	//add a form or search function
-	//draw a graph from hourly results?
-	//precipitation also
-	//peek another api and maybe look for nearby events if the weather is nice??
-	//do i need a jacket?

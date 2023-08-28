@@ -1,5 +1,6 @@
 package com.grae.WeatherTest;
 
+import java.text.DecimalFormat;
 import java.util.Date;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
@@ -7,6 +8,9 @@ import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 @JsonSerialize(include = JsonSerialize.Inclusion.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class Values {
+
+    DecimalFormat df = new DecimalFormat("0.0");
+
     public double cloudBase;
     public double cloudCeiling;
     public double cloudCover;
@@ -188,5 +192,9 @@ public class Values {
 
     public double getTemperatureApparent() {
         return temperatureApparent;
+    }
+
+    public String getTemperatureApparentAvg() {
+        return df.format(this.temperatureApparentAvg);
     }
 }

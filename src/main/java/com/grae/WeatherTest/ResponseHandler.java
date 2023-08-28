@@ -24,7 +24,8 @@ public class ResponseHandler {
         var jnj = new Jinjava();
 
         context.put("dailyForecast", dailyForecast);
-        context.put("feelslikenow", dailyForecast.timelines.daily.get(0).values.temperatureApparentAvg);
+        context.put("today", dailyForecast.timelines.daily.get(0));
+        context.put("feelslikenow", dailyForecast.timelines.daily.get(0).values.getTemperatureApparentAvg());
 
         String template = Resources.toString(Resources.getResource("getWeather.html"), Charsets.UTF_8);
         return jnj.render(template, context);
