@@ -98,7 +98,7 @@ public class WeatherTestApplication {
 
 	public static void handleForecast(DailyForecast dailyForecast) {
 		if (dailyForecast.timelines.daily.size() > 5) { dailyForecast.timelines.daily.remove(dailyForecast.timelines.daily.size()-1); }
-		//for (Daily d : dailyForecast.timelines.daily) {d.summariseData(); }
+		for (Daily d : dailyForecast.timelines.daily) {d.summariseData(); }
 	}
 
 	public static void main(String[] args) {

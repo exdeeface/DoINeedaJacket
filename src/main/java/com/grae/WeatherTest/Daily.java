@@ -16,10 +16,6 @@ public class Daily {
     public int rainScore;
     public int windScore;
 
-    Daily() {
-        summariseData();
-    }
-
     public Values getValues() {
         return this.values;
     }
