@@ -13,8 +13,10 @@ class WeatherTestApplicationTest {
     void requestDailyForecast() throws IOException, InterruptedException {
         assertAll(
                 () -> {
-                    assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom",
-                            WeatherTestApplication.requestDailyForecast("Brixton").getLocation().getName());
+                    if (System.getenv("X_RAPIDAPI_KEY") != null) {
+                        assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom",
+                                WeatherTestApplication.requestDailyForecast("Brixton").getLocation().getName());
+                    }
                 },
                 () -> {
                     assertNull(WeatherTestApplication.requestDailyForecast("").getTimelines());
