@@ -10,19 +10,29 @@ public class Values {
 
     DecimalFormat df = new DecimalFormat("0.0");
 
+    private double cloudCoverAvg;
+    private int precipitationProbabilityMax;
+    private double windSpeedAvg;
+    private double temperatureAvg;
+    private double temperatureApparentAvg;
+
+    public double getCloudCoverAvg() { return cloudCoverAvg; }
+    public int getPrecipitationProbabilityMax() { return precipitationProbabilityMax; }
+    public double getWindSpeedAvg() { return windSpeedAvg; }
+    public double getTemperatureAvg() { return temperatureAvg; }
+    public String getTemperatureApparentAvgAsString() { return df.format(this.temperatureApparentAvg); }
+    public double getTemperatureApparentAvg() { return this.temperatureApparentAvg; }
+}
+
+/*
     private double cloudCover;
     private double humidity;
     private double temperature;
     private double temperatureApparent;
-    private double cloudCoverAvg;
     private double humidityAvg;
     public double precipitationProbabilityAvg;
-    private int precipitationProbabilityMax;
     private int snowIntensityAvg;
-    private double temperatureApparentAvg;
-    private double temperatureAvg;
     private double windSpeed;
-    private double windSpeedAvg;
     private int precipitationProbability;
     private double rainAccumulation;
     private double rainIntensity;
@@ -48,15 +58,4 @@ public class Values {
     private double temperatureMin;
     private double windSpeedMax;
     private double windSpeedMin;
-
-    public double getCloudCoverAvg() { return cloudCoverAvg; }
-    public int getPrecipitationProbabilityMax() { return precipitationProbabilityMax; }
-    public double getWindSpeedAvg() { return windSpeedAvg; }
-    public double getTemperatureAvg() {
-        return temperatureAvg;
-    }
-    public String getTemperatureApparentAvgAsString() { return df.format(this.temperatureApparentAvg); }
-    public double getTemperatureApparentAvg() {
-        return this.temperatureApparentAvg;
-    }
-}
+    */

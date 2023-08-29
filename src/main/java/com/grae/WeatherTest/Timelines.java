@@ -8,9 +8,7 @@ public class Timelines {
     private ArrayList<Hourly> hourly;
     private ArrayList<Daily> daily;
 
-    public ArrayList<Hourly> getHourly() {
-        return hourly;
-    }
+    public ArrayList<Hourly> getHourly() { return hourly; }
     public ArrayList<Daily> getDaily() {
         return daily;
     }

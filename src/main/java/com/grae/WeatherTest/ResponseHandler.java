@@ -11,15 +11,6 @@ import java.util.Map;
 public class ResponseHandler {
     static Map<String, Object> context = Maps.newHashMap();
 
-    public String  createTemplate(HourlyForecast hourlyForecast) throws IOException {
-        var jnj = new Jinjava();
-
-        context.put("hourlyForecast", hourlyForecast);
-
-        String template = Resources.toString(Resources.getResource("getWeather.html"), Charsets.UTF_8);
-        return jnj.render(template, context);
-    }
-
     public static String createTemplate(DailyForecast dailyForecast) throws IOException {
         var jnj = new Jinjava();
 
