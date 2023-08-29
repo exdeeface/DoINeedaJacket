@@ -1,9 +1,7 @@
 package com.grae.WeatherTest;
 
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
-import java.util.concurrent.TimeUnit;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -14,8 +12,7 @@ class WeatherTestApplicationTest {
         assertAll(
                 () -> {
                     if (System.getenv("X_RAPIDAPI_KEY") != null) {
-                        assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom",
-                                WeatherTestApplication.requestDailyForecast("Brixton").getLocation().getName());
+                        assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom", WeatherTestApplication.requestDailyForecast("Brixton").getLocation().getName());
                     }
                 },
                 () -> {

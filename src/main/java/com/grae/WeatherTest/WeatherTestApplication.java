@@ -29,7 +29,7 @@ public class WeatherTestApplication {
 		Request request = new Request.Builder()
 				.url("https://tomorrow-io1.p.rapidapi.com/v4/weather/forecast?location=" + location + " &timesteps=" + timestep + "&units=" + unit)
 				.get()
-				.addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
+				.addHeader("X-RapidAPI-Key", System.getenv("secrets.X_RAPIDAPI_KEY"))
 				.addHeader("X-RapidAPI-Host", "tomorrow-io1.p.rapidapi.com")
 				.build();
 
@@ -54,7 +54,7 @@ public class WeatherTestApplication {
 	public static DailyForecast requestFakeDailyForecast() throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 
-		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
+		DailyForecast dailyForecast = objectMapper.readValue(new File("src/testForecast.json"), DailyForecast.class);
 		handleForecast(dailyForecast);
 
 		return dailyForecast;
