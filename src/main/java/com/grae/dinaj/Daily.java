@@ -89,9 +89,9 @@ public class Daily {
     }
 
     public void calcRainScore() {
-        if (values.getPrecipitationProbabilityMax() < 20.0d) { rainScore = 0;
-        } else if (20.0d <= values.getPrecipitationProbabilityMax() && values.getPrecipitationProbabilityMax() < 40.0d) { rainScore = -1;
-        } else if (40.0d < values.getPrecipitationProbabilityMax()) { rainScore = -2; }
+        if (values.getPrecipitationProbabilityMax() < 20.0d) { rainScore = 0; }
+        else if (20.0d <= values.getPrecipitationProbabilityMax() && values.getPrecipitationProbabilityMax() < 40.0d) { rainScore = -1; }
+        else if (40.0d < values.getPrecipitationProbabilityMax()) { rainScore = -2; }
     }
 
     public void calcWindScore() {
