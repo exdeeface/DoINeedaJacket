@@ -16,7 +16,7 @@
 <div class="forecast-container">
     {% for daily in dailyForecast.getTimelines().getDaily() %}
         <div class="day">
-            <h2>{{ daily.getTime() }}</h2>
+            <h2>{{ daily.getDateAsString() }}</h2>
            <p class="temperature"> <b>{{ daily.values.getTemperatureAvg() }}°C</b></p>
             <p class="conditions">{{ daily.getSummary() }}</p>
         </div>

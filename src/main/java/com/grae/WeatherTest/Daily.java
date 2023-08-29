@@ -25,10 +25,7 @@ public class Daily {
 
     public String getTime() {
         Calendar c = Calendar.getInstance();
-        Calendar f = Calendar.getInstance();
         c.setTime(this.time);
-        String s = String.valueOf(f.get(Calendar.MONTH));
-        System.out.println(s);
         String day;
         String month;
 
@@ -67,7 +64,7 @@ public class Daily {
     public void doINeedAJacket() {
         int total = coldScore + rainScore + windScore;
 
-        if (total <= -2) { doINeedAJacket = "You need a jacket.";
+        if (total < 0) { doINeedAJacket = "You need a jacket.";
         } else if (total == 0) { doINeedAJacket = "It's up to you."; }
         else if (total > 0) { doINeedAJacket = "You don't need a jacket."; }
 

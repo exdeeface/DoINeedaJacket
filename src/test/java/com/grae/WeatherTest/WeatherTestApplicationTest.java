@@ -9,21 +9,20 @@ class WeatherTestApplicationTest {
 
     @Test
     void requestDailyForecast() throws IOException, InterruptedException {
+        DailyForecast df = WeatherTestApplication.requestDailyForecast("Brixton");
         assertAll(
-                () -> {
-                    if (System.getenv("X_RAPIDAPI_KEY") != null) {
-                        assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom", WeatherTestApplication.requestDailyForecast("Brixton").getLocation().getName());
-                    }
-                },
-                () -> {
-                    assertNull(WeatherTestApplication.requestDailyForecast("").getTimelines());
-                }
+                () -> assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom", df.getLocation().getName()),
+                () -> assertEquals("51.456806", df.getLocation().getLat()),
+                () -> assertEquals("-0.116796", df.getLocation().getLon()),
+                () -> assertEquals(5, df.getTimelines().getDaily().size()),
+                () -> assertEquals("town", df.getLocation().getType()),
+                () -> assertNull(WeatherTestApplication.requestDailyForecast("").getTimelines())
         );
     }
 
     @Test
     void testRequestDailyForecast() throws IOException {
-        DailyForecast dailyForecast = WeatherTestApplication.requestFakeDailyForecast();
-        assertEquals("Eferding, Bezirk Eferding, 4070, Österreich", dailyForecast.getLocation().getName());
+        DailyForecast df = WeatherTestApplication.requestFakeDailyForecast();
+        assertEquals("Eferding, Bezirk Eferding, 4070, Österreich", df.getLocation().getName());
     }
 }

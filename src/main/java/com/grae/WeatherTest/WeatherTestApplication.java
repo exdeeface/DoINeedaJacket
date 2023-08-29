@@ -50,7 +50,6 @@ public class WeatherTestApplication {
 		return ResponseHandler.createTemplate(dailyForecast);
 	}
 
-	@GetMapping("getFakeDailyWeather")
 	public static DailyForecast requestFakeDailyForecast() throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 
