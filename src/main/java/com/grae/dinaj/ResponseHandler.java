@@ -1,4 +1,4 @@
-package com.grae.Weather;
+package com.grae.dinaj;
 
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;

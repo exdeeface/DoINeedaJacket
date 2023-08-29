@@ -1,4 +1,4 @@
-package com.grae.Weather;
+package com.grae.dinaj;
 
 public class DailyForecast {
     private Timelines timelines;

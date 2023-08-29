@@ -1,4 +1,4 @@
-package com.grae.Weather;
+package com.grae.dinaj;
 
 import org.junit.jupiter.api.Test;
 
