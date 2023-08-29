@@ -1,4 +1,5 @@
+com\grae\Weather\DailyTest.class
 hellocucumber\RunCucumberTest.class
-com\grae\WeatherTest\WeatherTestApplicationTest.class
 hellocucumber\StepDefinitions.class
+com\grae\Weather\WeatherTestApplicationTest.class
 hellocucumber\IsItFriday.class
