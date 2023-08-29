@@ -59,7 +59,6 @@ public class Daily {
             case 12 -> month = "";
 
             default -> { return "Date Null"; }
-
         }
 
         return day + ", " + month + " " + c.get(Calendar.DAY_OF_MONTH);

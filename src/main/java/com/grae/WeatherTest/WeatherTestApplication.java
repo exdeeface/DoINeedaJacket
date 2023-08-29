@@ -16,34 +16,11 @@ import java.io.File;
 import java.io.IOException;
 import java.util.Map;
 
-
 @SpringBootApplication
 @RestController
 public class WeatherTestApplication {
-	@GetMapping("/getHourlyWeather")
-	public static HourlyForecast requestHourlyForecast(String location) throws IOException {
-		OkHttpClient client = new OkHttpClient();
 
-		String timestep = "1h";
-		String unit = "metric";
-
-		Request request = new Request.Builder()
-				.url("https://tomorrow-io1.p.rapidapi.com/v4/weather/forecast?location=" + location + " &timesteps=" + timestep + "&units=" + unit)
-				.get()
-				.addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
-				.addHeader("X-RapidAPI-Host", "tomorrow-io1.p.rapidapi.com")
-				.build();
-
-		Response response = client.newCall(request).execute();
-
-		ObjectMapper objectMapper = new ObjectMapper();
-		objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-
-		return objectMapper.readValue(response.body().string(), HourlyForecast.class);
-	}
-
-	@GetMapping("/getDailyWeather")
-	public static String requestDailyForecast(String location) throws IOException {
+	public static DailyForecast requestDailyForecast(String location) throws IOException {
 		OkHttpClient client = new OkHttpClient();
 
 		String timestep = "1d";
@@ -64,7 +41,22 @@ public class WeatherTestApplication {
 		DailyForecast dailyForecast = objectMapper.readValue(response.body().string(), DailyForecast.class);
         handleForecast(dailyForecast);
 
-		HourlyForecast hourlyForecast = requestHourlyForecast(location);
+		return dailyForecast;
+	}
+
+	@GetMapping("/getWeather")
+	public static String displayPage(String location) throws IOException {
+		DailyForecast dailyForecast = requestDailyForecast(location);
+		return ResponseHandler.createTemplate(dailyForecast);
+	}
+
+	@GetMapping("getFakeDailyWeather")
+	public static String requestFakeDailyForecast() throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
+		handleForecast(dailyForecast);
+
 		return ResponseHandler.createTemplate(dailyForecast);
 	}
 
@@ -78,17 +70,7 @@ public class WeatherTestApplication {
 
 	@PostMapping({"/", "/search"})
 	public static String searchSubmit(@RequestParam("location") String location) throws IOException {
-		return requestDailyForecast(location);
-	}
-
-	@GetMapping("getFakeDailyWeather")
-	public static String requestFakeDailyForecast() throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
-		handleForecast(dailyForecast);
-
-		return ResponseHandler.createTemplate(dailyForecast);
+		return displayPage(location);
 	}
 
 	public static void handleForecast(DailyForecast dailyForecast) {
