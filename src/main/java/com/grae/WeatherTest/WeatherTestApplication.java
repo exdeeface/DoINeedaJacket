@@ -29,7 +29,7 @@ public class WeatherTestApplication {
 		Request request = new Request.Builder()
 				.url("https://tomorrow-io1.p.rapidapi.com/v4/weather/forecast?location=" + location + " &timesteps=" + timestep + "&units=" + unit)
 				.get()
-				.addHeader("X-RapidAPI-Key", System.getenv("secrets.X_RAPIDAPI_KEY"))
+				.addHeader("X-RapidAPI-Key", System.getenv("X_RAPIDAPI_KEY"))
 				.addHeader("X-RapidAPI-Host", "tomorrow-io1.p.rapidapi.com")
 				.build();
 
