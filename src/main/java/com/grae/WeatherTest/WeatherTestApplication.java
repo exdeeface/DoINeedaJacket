@@ -51,13 +51,13 @@ public class WeatherTestApplication {
 	}
 
 	@GetMapping("getFakeDailyWeather")
-	public static String requestFakeDailyForecast() throws IOException {
+	public static DailyForecast requestFakeDailyForecast() throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 
 		DailyForecast dailyForecast = objectMapper.readValue(new File("src/test2.json"), DailyForecast.class);
 		handleForecast(dailyForecast);
 
-		return ResponseHandler.createTemplate(dailyForecast);
+		return dailyForecast;
 	}
 
 	@GetMapping({"/", "/search"})
@@ -74,8 +74,13 @@ public class WeatherTestApplication {
 	}
 
 	public static void handleForecast(DailyForecast dailyForecast) {
-		if (dailyForecast.getTimelines().getDaily().size() > 5) { dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1); }
-		for (Daily d : dailyForecast.getTimelines().getDaily()) {d.summariseData(); }
+		if (dailyForecast.getTimelines() == null) { return; }
+
+		if (dailyForecast.getTimelines().getDaily().size() > 5) {
+			dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1);
+		}
+
+		for (Daily d : dailyForecast.getTimelines().getDaily()) { d.summariseData(); }
 	}
 
 	public static void main(String[] args) {
