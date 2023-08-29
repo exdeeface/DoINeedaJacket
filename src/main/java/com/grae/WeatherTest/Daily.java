@@ -7,21 +7,28 @@ public class Daily {
     private Date time;
     private Values values;
     private String summary;
-    private String justification = "test change me too please :-)";
-    private String dinaj;
+    private String justification;
+    private String doINeedAJacket;
 
     private int coldScore;
     private int rainScore;
     private int windScore;
 
-    public Values getValues() {
-        return this.values;
+    public void summariseData() {
+        calcColdScore();
+        calcRainScore();
+        calcWindScore();
+        singleWordSummary();
+        makeJustification();
+        doINeedAJacket();
     }
-    public String getDinaj() { return dinaj; }
 
     public String getTime() {
         Calendar c = Calendar.getInstance();
+        Calendar f = Calendar.getInstance();
         c.setTime(this.time);
+        String s = String.valueOf(f.get(Calendar.MONTH));
+        System.out.println(s);
         String day;
         String month;
 
@@ -49,8 +56,10 @@ public class Daily {
             case 9 -> month = "October";
             case 10 -> month = "November";
             case 11 -> month = "December";
+            case 12 -> month = "";
 
             default -> { return "Date Null"; }
+
         }
 
         return day + ", " + month + " " + c.get(Calendar.DAY_OF_MONTH);
@@ -59,24 +68,12 @@ public class Daily {
     public void doINeedAJacket() {
         int total = coldScore + rainScore + windScore;
 
-        if (total <= -2) { dinaj = "You need a jacket.";
-        } else if (total == 0) { dinaj = "It's up to you."; }
-        else if (total > 0) { dinaj = "You don't need a jacket."; }
+        if (total <= -2) { doINeedAJacket = "You need a jacket.";
+        } else if (total == 0) { doINeedAJacket = "It's up to you."; }
+        else if (total > 0) { doINeedAJacket = "You don't need a jacket."; }
 
-        if (rainScore == -2 && coldScore == 2) {
-            dinaj += ".. but you do need an umbrella.";
-        } else if (rainScore == 0 && coldScore == 0) {
-            dinaj += ".. but you can bring a jumper.";
-        }
-    }
-
-    public void summariseData() {
-        calcColdScore();
-        calcRainScore();
-        calcWindScore();
-        singleWordSummary();
-        makeJustification();
-        doINeedAJacket();
+        if (rainScore == -2 && coldScore == 2) { doINeedAJacket += ".. but you do need an umbrella."; }
+        else if (rainScore == 0 && coldScore == 0) { doINeedAJacket += ".. but you can bring a jumper."; }
     }
 
     public void singleWordSummary() {
@@ -133,6 +130,10 @@ public class Daily {
         justification = justifyBegin + justifyEnd;
     }
 
+    public Values getValues() {
+        return this.values;
+    }
     public String getJustification() { return justification; }
     public String getSummary() { return summary; }
+    public String getDoINeedAJacket() { return doINeedAJacket; }
 }

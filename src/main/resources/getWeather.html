@@ -8,17 +8,17 @@
 </head>
 <body>
 <div class="verdict-justification">
-    <h1><em><small>feels like</small></em> {{feelslikenow}}<small><em>°C</em></small></h1>
-    <h2>{{today.dinaj}}<br>
-    <em>{{today.justification}}</em></h2>
+    <h1><em><small>feels like</small></em> {{ feelLike }}<small><em>°C</em></small></h1>
+    <h2>{{ today.getDoINeedAJacket() }}<br>
+    <em>{{ today.getJustification() }}</em></h2>
 </div>
-<h1 class="location-title">{{dailyForecast.location.name}}</h1>
+<h1 class="location-title">{{ dailyForecast.location.name }}</h1>
 <div class="forecast-container">
     {% for daily in dailyForecast.getTimelines().getDaily() %}
         <div class="day">
-            <h2>{{daily.time}}</h2>
-           <p class="temperature"> <b>{{daily.values.getTemperatureAvg()}}°C</b></p>
-            <p class="conditions">{{daily.getSummary()}}</p>
+            <h2>{{ daily.getTime() }}</h2>
+           <p class="temperature"> <b>{{ daily.values.getTemperatureAvg() }}°C</b></p>
+            <p class="conditions">{{ daily.getSummary() }}</p>
         </div>
     {% endfor %}
 </div>
