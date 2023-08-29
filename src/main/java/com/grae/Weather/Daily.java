@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -66,9 +66,9 @@ public class Daily {
 
         if (total < 0) { doINeedAJacket = "You need a jacket.";
         } else if (total == 0) { doINeedAJacket = "It's up to you."; }
-        else if (total > 0) { doINeedAJacket = "You don't need a jacket."; }
+        else { doINeedAJacket = "You don't need a jacket."; }
 
-        if (rainScore == -2 && coldScore == 2) { doINeedAJacket += ".. but you do need an umbrella."; }
+        if (rainScore == 0 && coldScore == 2) { doINeedAJacket += ".. but you do need an umbrella."; }
         else if (rainScore == 0 && coldScore == 0) { doINeedAJacket += ".. but you can bring a jumper."; }
     }
 
@@ -76,8 +76,8 @@ public class Daily {
         if (values.getPrecipitationProbabilityMax() > 20.0d) { this.summary = "Rainy"; }
         else if (values.getCloudCoverAvg() > 60.0d) { this.summary = "Cloudy"; }
         else if (values.getTemperatureApparentAvg() < 15.0d) { this.summary = "Chilly";
-        } else if (values.getCloudCoverAvg() < 30.0d && values.getTemperatureApparentAvg() >= 15.0d) { this.summary = "Sunny";
-        } else {
+        } else if (values.getCloudCoverAvg() < 30.0d && values.getTemperatureApparentAvg() >= 15.0d) { this.summary = "Sunny"; }
+        else {
             this.summary = "Clear";
             System.out.println("temp: " + values.getTemperatureAvg() + ", cloud: " + values.getCloudCoverAvg() + ", rain: " + values.getPrecipitationProbabilityMax() + ", wind: " + values.getWindSpeedAvg());
         }

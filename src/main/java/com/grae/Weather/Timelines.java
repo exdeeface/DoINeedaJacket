@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.util.ArrayList;

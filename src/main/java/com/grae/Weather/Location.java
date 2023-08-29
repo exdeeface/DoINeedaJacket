@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import java.text.DecimalFormat;
 

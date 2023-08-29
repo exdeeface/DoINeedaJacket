@@ -7,8 +7,16 @@
     <title>Weather Forecast</title>
 </head>
 <body>
+<div class="nav-bar">
+    <div class="banner-small">
+        <a href="/"><img  src="img/banner-small.png" alt="dinajlogo?"></a>
+    </div>
+    <form action="/getWeather">
+        <input type="text" name="location" class="search-bar" placeholder="Search...">
+    </form>
+</div>
 <div class="verdict-justification">
-    <h1><em><small>feels like</small></em> {{ feelLike }}<small><em>°C</em></small></h1>
+    <h1><em><small>feels like</small></em> {{ feelsLike }}<small><em>°C</em></small></h1>
     <h2>{{ today.getDoINeedAJacket() }}<br>
     <em>{{ today.getJustification() }}</em></h2>
 </div>
@@ -16,7 +24,7 @@
 <div class="forecast-container">
     {% for daily in dailyForecast.getTimelines().getDaily() %}
         <div class="day">
-            <h2>{{ daily.getDateAsString() }}</h2>
+            <h2>{{ daily.getTime() }}</h2>
            <p class="temperature"> <b>{{ daily.values.getTemperatureAvg() }}°C</b></p>
             <p class="conditions">{{ daily.getSummary() }}</p>
         </div>

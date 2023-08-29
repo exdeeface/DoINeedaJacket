@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import org.junit.jupiter.api.Test;
 import java.io.IOException;

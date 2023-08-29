@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Error Page</title>
+    <link rel="stylesheet" href="errorStyles.css">
+</head>
+<body>
+<div class="nav-bar">
+    <a href="/"><img src="img/banner-small.png" alt="dinajlogo?"></a>
+    <form action="/getWeather">
+        <input type="text" name="location" class="search-bar" placeholder="Search...">
+    </form>
+</div>
+<div class="error-message">
+    <h1>Oops! Something went wrong.</h1>
+</div>
+<form id="search-form" action="/getWeather">
+    <div class="search-bar">
+        <input type="text" name="location" id="search-input" placeholder="Enter your location">
+        <button type="submit">Search</button>
+    </div>
+</form>
+</body>
+</html>

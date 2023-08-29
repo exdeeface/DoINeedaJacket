@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
@@ -16,7 +16,7 @@ public class ResponseHandler {
 
         context.put("dailyForecast", dailyForecast);
         context.put("today", dailyForecast.getTimelines().getDaily().get(0));
-        context.put("feelLike", dailyForecast.getTimelines().getDaily().get(0).getValues().getTemperatureApparentAvgAsString());
+        context.put("feelsLike", dailyForecast.getTimelines().getDaily().get(0).getValues().getTemperatureApparentAvgAsString());
 
         String template = Resources.toString(Resources.getResource("getWeather.html"), Charsets.UTF_8);
         return jnj.render(template, context);

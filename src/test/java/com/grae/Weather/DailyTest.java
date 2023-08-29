@@ -1,4 +1,4 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import org.junit.jupiter.api.Test;
 
@@ -34,6 +34,8 @@ class DailyTest {
         );
     }
 
-    //@Test
-    //void getTime() throws IOException { DailyForecast df = WeatherTestApplication.requestDailyForecast("se11aa"); }
+    @Test
+    void getTime() throws IOException {
+        DailyForecast df = WeatherTestApplication.requestDailyForecast("se11aa");
+    }
 }

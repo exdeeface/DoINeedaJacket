@@ -1,8 +1,7 @@
-package com.grae.WeatherTest;
+package com.grae.Weather;
 
 import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.google.common.base.Charsets;
 import com.google.common.collect.Maps;
 import com.google.common.io.Resources;
 import com.hubspot.jinjava.Jinjava;
@@ -14,7 +13,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.web.bind.annotation.*;
 import java.io.File;
 import java.io.IOException;
+import java.nio.charset.StandardCharsets;
 import java.util.Map;
+import java.util.Objects;
 
 @SpringBootApplication
 @RestController
@@ -46,8 +47,16 @@ public class WeatherTestApplication {
 
 	@GetMapping("/getWeather")
 	public static String displayPage(String location) throws IOException {
-		DailyForecast dailyForecast = requestDailyForecast(location);
-		return ResponseHandler.createTemplate(dailyForecast);
+		if (Objects.equals(location, "") || location == null) {
+			return errorPage();
+		} else {
+			DailyForecast dailyForecast = requestDailyForecast(location);
+			String template;
+			try { template = ResponseHandler.createTemplate(dailyForecast); }
+			catch (NullPointerException e) { return errorPage(); }
+
+			return template;
+		}
 	}
 
 	public static DailyForecast requestFakeDailyForecast() throws IOException {
@@ -62,23 +71,23 @@ public class WeatherTestApplication {
 	@GetMapping({"/", "/search"})
 	public static String searchForm() throws IOException {
 		Map<String, Object> context = Maps.newHashMap();
-		String template = Resources.toString(Resources.getResource("searchLocation.html"), Charsets.UTF_8);
+		String template = Resources.toString(Resources.getResource("searchLocation.html"), StandardCharsets.UTF_8);
 		var jnj = new Jinjava();
 		return jnj.render(template, context);
 	}
 
-	@PostMapping({"/", "/search"})
-	public static String searchSubmit(@RequestParam("location") String location) throws IOException {
-		return displayPage(location);
+	@GetMapping({"/error"})
+	public static String errorPage() throws IOException {
+		Map<String, Object> context = Maps.newHashMap();
+		var jnj = new Jinjava();
+		String template = Resources.toString(Resources.getResource("errorPage.html"), StandardCharsets.UTF_8);
+		return jnj.render(template, context);
 	}
 
 	public static void handleForecast(DailyForecast dailyForecast) {
 		if (dailyForecast.getTimelines() == null) { return; }
 
-		if (dailyForecast.getTimelines().getDaily().size() > 5) {
-			dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1);
-		}
-
+		if (dailyForecast.getTimelines().getDaily().size() > 5) { dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1); }
 		for (Daily d : dailyForecast.getTimelines().getDaily()) { d.summariseData(); }
 	}
 
