@@ -52,13 +52,15 @@ public class WeatherTestApplication {
 		} else {
 			DailyForecast dailyForecast = requestDailyForecast(location);
 			String template;
+
 			try { template = ResponseHandler.createTemplate(dailyForecast); }
 			catch (NullPointerException e) { return errorPage(); }
-
+			System.out.println(template);
 			return template;
 		}
 	}
 
+	@GetMapping("/getFakeWeather")
 	public static DailyForecast requestFakeDailyForecast() throws IOException {
 		ObjectMapper objectMapper = new ObjectMapper();
 

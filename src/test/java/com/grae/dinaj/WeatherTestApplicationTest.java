@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.*;
 class WeatherTestApplicationTest {
 
     @Test
-    void requestDailyForecast() throws IOException, InterruptedException {
+    void requestDailyForecast() throws IOException {
         DailyForecast df = WeatherTestApplication.requestDailyForecast("Brixton");
         assertAll(
                 () -> assertEquals("Brixton, London, Greater London, England, SW2 1SS, United Kingdom", df.getLocation().getName()),
@@ -30,10 +30,21 @@ class WeatherTestApplicationTest {
     }
 
     @Test
-    void displayPage() throws IOException {
-        String template = WeatherTestApplication.displayPage("");
-        assertEquals(template, WeatherTestApplication.errorPage());
-        template = WeatherTestApplication.displayPage(null);
-        assertEquals(template, WeatherTestApplication.errorPage());
+    void displayPage() {
+        assertAll(
+                () -> {
+                    String template = WeatherTestApplication.displayPage("");
+                    assertEquals(template, WeatherTestApplication.errorPage());
+                },
+                () -> {
+                    String template = WeatherTestApplication.displayPage(null);
+                    assertEquals(template, WeatherTestApplication.errorPage());
+                },
+                () -> {
+                    String template = WeatherTestApplication.displayPage("Brixton");
+                    assertTrue(template.contains("<h1 class=\"location-title\">Brixton, London, Greater London, " +
+                            "England, SW2 1SS, United Kingdom</h1>"));
+                }
+        );
     }
 }
