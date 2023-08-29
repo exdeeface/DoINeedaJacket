@@ -16,6 +16,9 @@ class WeatherTestApplicationTest {
                 () -> assertEquals("-0.116796", df.getLocation().getLon()),
                 () -> assertEquals(5, df.getTimelines().getDaily().size()),
                 () -> assertEquals("town", df.getLocation().getType()),
+                () -> assertNotNull(df.getTimelines().getDaily()),
+                () -> assertNotNull(df.getTimelines().getDaily().get(0).getValues()),
+                () -> assertThrowsExactly(IndexOutOfBoundsException.class, () -> df.getTimelines().getDaily().get(5)),
                 () -> assertNull(WeatherTestApplication.requestDailyForecast("").getTimelines())
         );
     }
@@ -24,5 +27,13 @@ class WeatherTestApplicationTest {
     void testRequestDailyForecast() throws IOException {
         DailyForecast df = WeatherTestApplication.requestFakeDailyForecast();
         assertEquals("Eferding, Bezirk Eferding, 4070, Österreich", df.getLocation().getName());
+    }
+
+    @Test
+    void displayPage() throws IOException {
+        String template = WeatherTestApplication.displayPage("");
+        assertEquals(template, WeatherTestApplication.errorPage());
+        template = WeatherTestApplication.displayPage(null);
+        assertEquals(template, WeatherTestApplication.errorPage());
     }
 }

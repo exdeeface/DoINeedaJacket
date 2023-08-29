@@ -87,7 +87,10 @@ public class WeatherTestApplication {
 	public static void handleForecast(DailyForecast dailyForecast) {
 		if (dailyForecast.getTimelines() == null) { return; }
 
-		if (dailyForecast.getTimelines().getDaily().size() > 5) { dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1); }
+		if (dailyForecast.getTimelines().getDaily().size() > 5) {
+			dailyForecast.getTimelines().getDaily().remove(dailyForecast.getTimelines().getDaily().size()-1);
+		}
+
 		for (Daily d : dailyForecast.getTimelines().getDaily()) { d.summariseData(); }
 	}
 
