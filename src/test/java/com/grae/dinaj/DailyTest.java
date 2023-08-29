@@ -1,4 +1,4 @@
-package com.grae.Weather;
+package com.grae.dinaj;
 
 import org.junit.jupiter.api.Test;
 
@@ -38,14 +38,14 @@ class DailyTest {
     void getTime() throws IOException {
         DailyForecast df = WeatherTestApplication.requestFakeDailyForecast();
         Daily today = df.getTimelines().getDaily().get(0);
-        assertEquals(today.getTime(), "Monday, August 28");
+        assertEquals("Monday, August 28", today.getTime());
         today = df.getTimelines().getDaily().get(1);
-        assertEquals(today.getTime(), "Tuesday, August 29");
+        assertEquals("Tuesday, August 29", today.getTime());
         today = df.getTimelines().getDaily().get(2);
-        assertEquals(today.getTime(), "Wednesday, August 30");
+        assertEquals("Wednesday, August 30", today.getTime());
         today = df.getTimelines().getDaily().get(3);
-        assertEquals(today.getTime(), "Thursday, August 31");
+        assertEquals("Thursday, August 31", today.getTime());
         today = df.getTimelines().getDaily().get(4);
-        assertEquals(today.getTime(), "Friday, September 1");
+        assertEquals("Friday, September 1", today.getTime());
     }
 }

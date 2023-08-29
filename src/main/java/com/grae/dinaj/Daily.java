@@ -1,4 +1,4 @@
-package com.grae.Weather;
+package com.grae.dinaj;
 
 import java.util.Calendar;
 import java.util.Date;
@@ -75,12 +75,9 @@ public class Daily {
     public void singleWordSummary() {
         if (values.getPrecipitationProbabilityMax() > 20.0d) { this.summary = "Rainy"; }
         else if (values.getCloudCoverAvg() > 60.0d) { this.summary = "Cloudy"; }
-        else if (values.getTemperatureApparentAvg() < 15.0d) { this.summary = "Chilly";
-        } else if (values.getCloudCoverAvg() < 30.0d && values.getTemperatureApparentAvg() >= 15.0d) { this.summary = "Sunny"; }
-        else {
-            this.summary = "Clear";
-            System.out.println("temp: " + values.getTemperatureAvg() + ", cloud: " + values.getCloudCoverAvg() + ", rain: " + values.getPrecipitationProbabilityMax() + ", wind: " + values.getWindSpeedAvg());
-        }
+        else if (values.getTemperatureApparentAvg() < 15.0d) { this.summary = "Chilly"; }
+        else if (values.getCloudCoverAvg() < 30.0d && values.getTemperatureApparentAvg() >= 15.0d) { this.summary = "Sunny"; }
+        else { this.summary = "Clear"; }
     }
 
     public void calcColdScore() {
