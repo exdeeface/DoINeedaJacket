@@ -23,6 +23,8 @@ public class Daily {
         doINeedAJacket();
     }
 
+    public void setTime(Date time) { this.time = time; }
+
     public String getTime() {
         Calendar c = Calendar.getInstance();
         c.setTime(this.time);
@@ -37,7 +39,7 @@ public class Daily {
             case 5 -> day = "Thursday";
             case 6 -> day = "Friday";
             case 7 -> day = "Saturday";
-            default -> { return "Date Null"; }
+            default -> day = "Date Null";
         }
 
         switch (c.get(Calendar.MONTH)) {
@@ -53,9 +55,7 @@ public class Daily {
             case 9 -> month = "October";
             case 10 -> month = "November";
             case 11 -> month = "December";
-            case 12 -> month = "";
-
-            default -> { return "Date Null"; }
+            default -> month = "Date Null";
         }
 
         return day + ", " + month + " " + c.get(Calendar.DAY_OF_MONTH);
@@ -123,9 +123,7 @@ public class Daily {
         justification = justifyBegin + justifyEnd;
     }
 
-    public Values getValues() {
-        return this.values;
-    }
+    public Values getValues() { return this.values; }
     public String getJustification() { return justification; }
     public String getSummary() { return summary; }
     public String getDoINeedAJacket() { return doINeedAJacket; }

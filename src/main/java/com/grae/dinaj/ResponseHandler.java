@@ -25,6 +25,5 @@ public class ResponseHandler {
 
         String template = Resources.toString(Resources.getResource("getWeather.html"), StandardCharsets.UTF_8);
         return jnj.render(template, context);
-
     }
 }

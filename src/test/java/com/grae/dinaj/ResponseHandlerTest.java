@@ -7,7 +7,6 @@ import java.io.IOException;
 import static org.junit.jupiter.api.Assertions.*;
 
 class ResponseHandlerTest {
-
     @Test
     void createTemplate() throws IOException {
         DailyForecast df = WeatherTestApplication.requestFakeDailyForecast();
