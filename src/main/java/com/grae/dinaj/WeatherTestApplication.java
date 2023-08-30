@@ -55,7 +55,6 @@ public class WeatherTestApplication {
 
 			try { template = ResponseHandler.createTemplate(dailyForecast); }
 			catch (NullPointerException e) { return errorPage(); }
-			System.out.println(template);
 			return template;
 		}
 	}

@@ -22,4 +22,7 @@ public class Values {
     public double getTemperatureAvg() { return temperatureAvg; }
     public String getTemperatureApparentAvgAsString() { return df.format(this.temperatureApparentAvg); }
     public double getTemperatureApparentAvg() { return this.temperatureApparentAvg; }
+
+    public void setTemperatureAvg(double temperatureAvg) { this.temperatureAvg = temperatureAvg; }
+    public void setTemperatureApparentAvg(double temperatureApparentAvg) { this.temperatureApparentAvg = temperatureApparentAvg; }
 }

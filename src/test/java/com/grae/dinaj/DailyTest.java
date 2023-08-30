@@ -1,14 +1,11 @@
 package com.grae.dinaj;
 
 import org.junit.jupiter.api.Test;
-
 import java.io.IOException;
 import java.util.Calendar;
-
 import static org.junit.jupiter.api.Assertions.*;
 
 class DailyTest {
-
     @Test
     void summariseData() throws IOException {
         Daily day = new Daily();
@@ -36,94 +33,133 @@ class DailyTest {
     }
 
     @Test
-    void getTime() throws IOException {
+    void getTime(){
         assertAll(
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.JANUARY, 1);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Sunday, January 1");
+                    assertEquals("Sunday, January 1", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.FEBRUARY, 16);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Thursday, February 16");
+                    assertEquals("Thursday, February 16", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.MARCH, 28);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Tuesday, March 28");
+                    assertEquals("Tuesday, March 28", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.APRIL, 3);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Monday, April 3");
+                    assertEquals("Monday, April 3", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.MAY, 19);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Friday, May 19");
+                    assertEquals("Friday, May 19", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.JUNE, 20);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Tuesday, June 20");
+                    assertEquals("Tuesday, June 20", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.JULY, 26);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Wednesday, July 26");
+                    assertEquals("Wednesday, July 26", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.AUGUST, 19);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Saturday, August 19");
+                    assertEquals("Saturday, August 19", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.SEPTEMBER, 15);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Friday, September 15");
+                    assertEquals("Friday, September 15", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.OCTOBER, 28);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Saturday, October 28");
+                    assertEquals("Saturday, October 28", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.NOVEMBER, 7);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Tuesday, November 7");
+                    assertEquals("Tuesday, November 7", day.getTime());
                 },
                 () -> {
                     Calendar c = Calendar.getInstance();
                     c.set(2023, Calendar.DECEMBER, 18);
                     Daily day = new Daily();
                     day.setTime(c.getTime());
-                    assertEquals(day.getTime(), "Monday, December 18");
+                    assertEquals("Monday, December 18", day.getTime());
                 }
+        );
+    }
 
-
+    @Test
+    void doINeedAJacket() {
+        assertAll(
+                () -> {
+                    Daily day = new Daily();
+                    day.setValues(new Values());
+                    day.getValues().setTemperatureApparentAvg(5.0d);
+                    day.calcColdScore();
+                    assertEquals(-2, day.getColdScore());
+                },
+                () -> {
+                    Daily day = new Daily();
+                    day.setValues(new Values());
+                    day.getValues().setTemperatureApparentAvg(13.8d);
+                    day.calcColdScore();
+                    assertEquals(-1, day.getColdScore());
+                },
+                () -> {
+                    Daily day = new Daily();
+                    day.setValues(new Values());
+                    day.getValues().setTemperatureApparentAvg(16.6d);
+                    day.calcColdScore();
+                    assertEquals(0, day.getColdScore());
+                },
+                () -> {
+                    Daily day = new Daily();
+                    day.setValues(new Values());
+                    day.getValues().setTemperatureApparentAvg(21.1d);
+                    day.calcColdScore();
+                    assertEquals(1, day.getColdScore());
+                },
+                () -> {
+                    Daily day = new Daily();
+                    day.setValues(new Values());
+                    day.getValues().setTemperatureApparentAvg(29.3d);
+                    day.calcColdScore();
+                    assertEquals(2, day.getColdScore());
+                }
         );
     }
 }
