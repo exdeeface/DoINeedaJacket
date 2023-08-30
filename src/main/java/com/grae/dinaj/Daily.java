@@ -129,8 +129,5 @@ public class Daily {
     public int getWindScore() { return windScore; }
 
     public void setTime(Date time) { this.time = time; }
-    public void setColdScore(int coldScore) { this.coldScore = coldScore; }
-    public void setRainScore(int rainScore) { this.rainScore = rainScore; }
-    public void setWindScore(int windScore) { this.windScore = windScore; }
     public void setValues(Values values) { this.values = values; }
 }
