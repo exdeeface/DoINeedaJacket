@@ -50,6 +50,7 @@ public class Daily {
         } else if (total == 0) { doINeedAJacket = "It's up to you."; }
         else { doINeedAJacket = "You don't need a jacket."; }
 
+        if (coldScore <= -1 && rainScore == 0) { doINeedAJacket = "You need a jacket."; }
         if (rainScore == -2 && coldScore == 2) { doINeedAJacket += ".. but you do need an umbrella."; }
         else if (rainScore == 0 && coldScore == 0) { doINeedAJacket += ".. but you can bring a jumper."; }
     }

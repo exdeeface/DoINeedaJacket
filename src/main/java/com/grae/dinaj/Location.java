@@ -11,7 +11,7 @@ public class Location {
     private String type;
 
     public String getLat() { return df.format(lat); }
-    public String getLon() { return df.format(lon);}
+    public String getLon() { return df.format(lon); }
     public String getName() {
         return name;
     }

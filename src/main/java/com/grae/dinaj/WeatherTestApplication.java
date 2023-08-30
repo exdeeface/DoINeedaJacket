@@ -58,16 +58,6 @@ public class WeatherTestApplication {
 		}
 	}
 
-	@GetMapping("/getFakeWeather")
-	public static DailyForecast requestFakeDailyForecast() throws IOException {
-		ObjectMapper objectMapper = new ObjectMapper();
-
-		DailyForecast dailyForecast = objectMapper.readValue(new File("src/testForecast.json"), DailyForecast.class);
-		handleForecast(dailyForecast);
-
-		return dailyForecast;
-	}
-
 	@GetMapping({"/", "/search"})
 	public static String searchForm() throws IOException {
 		Map<String, Object> context = Maps.newHashMap();
@@ -82,6 +72,16 @@ public class WeatherTestApplication {
 		var jnj = new Jinjava();
 		String template = Resources.toString(Resources.getResource("errorPage.html"), StandardCharsets.UTF_8);
 		return jnj.render(template, context);
+	}
+
+	@GetMapping("/getFakeWeather")
+	public static DailyForecast requestFakeDailyForecast() throws IOException {
+		ObjectMapper objectMapper = new ObjectMapper();
+
+		DailyForecast dailyForecast = objectMapper.readValue(new File("src/testForecast.json"), DailyForecast.class);
+		handleForecast(dailyForecast);
+
+		return dailyForecast;
 	}
 
 	public static void handleForecast(DailyForecast dailyForecast) {

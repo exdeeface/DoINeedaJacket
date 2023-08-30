@@ -1,7 +1,7 @@
-com\grae\Weather\ResponseHandler.class
-com\grae\Weather\DailyForecast.class
-com\grae\Weather\WeatherTestApplication.class
-com\grae\Weather\Values.class
-com\grae\Weather\Daily.class
-com\grae\Weather\Timelines.class
-com\grae\Weather\Location.class
+com\grae\dinaj\Daily.class
+com\grae\dinaj\DailyForecast.class
+com\grae\dinaj\Values.class
+com\grae\dinaj\ResponseHandler.class
+com\grae\dinaj\WeatherTestApplication.class
+com\grae\dinaj\Timelines.class
+com\grae\dinaj\Location.class

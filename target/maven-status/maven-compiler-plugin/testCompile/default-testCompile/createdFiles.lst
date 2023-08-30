@@ -1,5 +1,3 @@
-com\grae\Weather\DailyTest.class
-hellocucumber\RunCucumberTest.class
-hellocucumber\StepDefinitions.class
-com\grae\Weather\WeatherTestApplicationTest.class
-hellocucumber\IsItFriday.class
+com\grae\dinaj\ResponseHandlerTest.class
+com\grae\dinaj\WeatherTestApplicationTest.class
+com\grae\dinaj\DailyTest.class
