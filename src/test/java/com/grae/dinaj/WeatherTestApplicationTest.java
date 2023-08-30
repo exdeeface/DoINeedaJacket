@@ -47,4 +47,10 @@ class WeatherTestApplicationTest {
                 }
         );
     }
+
+    @Test
+    void searchForm() throws IOException {
+        String s = WeatherTestApplication.searchForm();
+        assertTrue(s.contains("<input type=\"text\" name=\"location\" id=\"search-input\" placeholder=\"Enter your location\">"));
+    }
 }
