@@ -33,7 +33,7 @@ class DailyTest {
     }
 
     @Test
-    void getTime(){
+    void getTime() {
         assertAll(
                 () -> {
                     Calendar c = Calendar.getInstance();
