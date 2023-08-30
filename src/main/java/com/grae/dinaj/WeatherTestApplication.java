@@ -20,7 +20,6 @@ import java.util.Objects;
 @SpringBootApplication
 @RestController
 public class WeatherTestApplication {
-
 	public static DailyForecast requestDailyForecast(String location) throws IOException {
 		OkHttpClient client = new OkHttpClient();
 
